@@ -1,0 +1,78 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+<meta charset="UTF-8">
+<meta name="viewport" content="width=device-width, initial-scale=1.0">
+<title>Vinay Sondh Canteen | Order Fresh, Skip the Queue</title>
+<style>
+:root{--green:#176b4d;--mint:#eaf6ef;--orange:#ff9f43;--ink:#18352b;--muted:#6d7d75;--white:#fff}
+*{box-sizing:border-box}body{margin:0;font-family:Inter,Arial,sans-serif;color:var(--ink);background:#fbfdfb}
+header{position:sticky;top:0;z-index:5;background:#ffffffed;backdrop-filter:blur(12px);border-bottom:1px solid #e7eee9}
+.nav{max-width:1120px;margin:auto;padding:16px 22px;display:flex;align-items:center;justify-content:space-between;gap:16px}
+.logo{font-size:21px;font-weight:800;color:var(--green)}.logo span{color:var(--orange)}
+nav a{color:var(--ink);text-decoration:none;margin-left:22px;font-weight:600;font-size:14px}
+.cart-pill{background:var(--green);color:white;border:0;border-radius:30px;padding:11px 17px;font-weight:700;cursor:pointer}
+.hero{max-width:1120px;margin:32px auto 22px;padding:48px 26px;border-radius:28px;background:linear-gradient(115deg,#eaf6ef 0%,#f7fbf2 60%,#fff0dd 100%);display:grid;grid-template-columns:1.15fr .85fr;align-items:center;gap:24px}
+.eyebrow{color:var(--green);font-weight:800;text-transform:uppercase;letter-spacing:1.5px;font-size:12px}
+h1{font-size:clamp(36px,5vw,58px);line-height:1.04;margin:13px 0 16px;letter-spacing:-2px}
+.hero p{color:var(--muted);font-size:17px;line-height:1.6;max-width:520px}
+.cta{display:inline-block;background:var(--green);color:white;text-decoration:none;padding:14px 22px;border-radius:12px;font-weight:700;margin-top:10px}
+.hero-art{min-height:230px;display:grid;place-items:center;font-size:120px;background:#ffffffa8;border-radius:24px}
+.section{max-width:1120px;margin:46px auto;padding:0 22px}
+.section-head{display:flex;justify-content:space-between;align-items:end;gap:16px;margin-bottom:20px}
+h2{font-size:29px;margin:0 0 7px}.sub{color:var(--muted);margin:0}
+.filters{display:flex;gap:8px;flex-wrap:wrap;margin-bottom:20px}
+.filter{border:1px solid #dce8df;background:white;color:var(--green);padding:9px 15px;border-radius:24px;cursor:pointer;font-weight:700}
+.filter.active{background:var(--green);color:white;border-color:var(--green)}
+.grid{display:grid;grid-template-columns:repeat(3,1fr);gap:18px}
+.item{background:white;border:1px solid #e8eee9;border-radius:19px;overflow:hidden;box-shadow:0 8px 24px #173c2910}
+.food-img{height:150px;display:grid;place-items:center;font-size:76px;background:var(--mint)}
+.item-body{padding:16px}.item h3{margin:0 0 7px;font-size:18px}.item p{margin:0;color:var(--muted);font-size:13px;min-height:34px}
+.item-bottom{display:flex;align-items:center;justify-content:space-between;margin-top:15px}
+.price{font-size:18px;font-weight:800}.add{background:var(--orange);border:0;border-radius:10px;padding:9px 14px;font-weight:800;cursor:pointer;color:#35220d}
+.steps{display:grid;grid-template-columns:repeat(3,1fr);gap:16px}
+.step{background:var(--mint);padding:22px;border-radius:18px}.step b{font-size:28px}.step h3{margin:12px 0 6px}.step p{color:var(--muted);margin:0;line-height:1.5}
+footer{margin-top:60px;background:#143e2e;color:white;padding:30px 22px;text-align:center}footer p{color:#c8ddd1;margin:8px 0 0}
+#cartPanel{position:fixed;right:18px;top:78px;width:min(360px,calc(100vw - 36px));background:white;border:1px solid #e1eae3;border-radius:18px;box-shadow:0 18px 55px #102c1d30;padding:18px;z-index:10;display:none}
+#cartPanel h3{margin:0 0 12px}.cart-line{display:flex;justify-content:space-between;gap:12px;padding:9px 0;border-bottom:1px solid #edf1ed;font-size:14px}
+.total{display:flex;justify-content:space-between;font-weight:800;margin:16px 0}
+.checkout{width:100%;padding:13px;background:var(--green);color:white;border:0;border-radius:11px;font-weight:800;cursor:pointer}
+.empty{color:var(--muted);font-size:14px;padding:12px 0}
+.notice{font-size:12px;color:var(--muted);text-align:center;margin-top:10px}
+@media(max-width:760px){nav a{display:none}.hero{margin:18px 14px;padding:30px 22px;grid-template-columns:1fr}.hero-art{min-height:150px;font-size:85px}.section{margin:34px auto}.grid{grid-template-columns:repeat(2,1fr)}.steps{grid-template-columns:1fr}}
+@media(max-width:480px){.grid{grid-template-columns:1fr}.section-head{align-items:start;flex-direction:column}}
+</style>
+</head>
+<body>
+<header><div class="nav"><div class="logo">Vinay Sondh <span>Canteen</span> 🍃</div><nav><a href="#menu">Menu</a><a href="#how">How it works</a><a href="#contact">Contact</a></nav><button class="cart-pill" onclick="toggleCart()">🛒 Cart (<span id="count">0</span>)</button></div></header>
+<main>
+<section class="hero"><div><div class="eyebrow">Campus food, made easy</div><h1>Good food.<br>Zero queue.</h1><p>Browse the canteen menu, add your favourites and place a demo order in just a few clicks. Save time between classes!</p><a class="cta" href="#menu">Explore Menu →</a></div><div class="hero-art">🍔 🥤</div></section>
+<section class="section" id="menu"><div class="section-head"><div><h2>Today's menu</h2><p class="sub">Fresh favourites from the campus canteen</p></div></div>
+<div class="filters"><button class="filter active" onclick="filterMenu('All',this)">All</button><button class="filter" onclick="filterMenu('Snacks',this)">Snacks</button><button class="filter" onclick="filterMenu('Meals',this)">Meals</button><button class="filter" onclick="filterMenu('Drinks',this)">Drinks</button></div>
+<div class="grid" id="foodGrid"></div></section>
+<section class="section" id="how"><div class="section-head"><div><h2>How Smart Canteen works</h2><p class="sub">Three simple steps to a quicker lunch break</p></div></div><div class="steps"><div class="step"><b>📱</b><h3>1. Browse</h3><p>Check available food items and prices on the menu.</p></div><div class="step"><b>➕</b><h3>2. Add to cart</h3><p>Select your favourite items and review your order.</p></div><div class="step"><b>🥡</b><h3>3. Collect</h3><p>Place your demo order and collect it from the canteen counter.</p></div></div></section>
+</main>
+<footer id="contact"><strong>Vinay Sondh Canteen</strong><p>Making campus meals simpler, one order at a time.</p><p>Demo student project • Contact your canteen team for actual orders</p></footer>
+<div id="cartPanel"><h3>Your order 🛒</h3><div id="cartItems"><div class="empty">Your cart is empty.</div></div><div class="total"><span>Total</span><span id="total">₹0</span></div><button class="checkout" onclick="checkout()">Place Demo Order</button><div class="notice">Demo only — no payment or real order is processed.</div></div>
+<script>
+const foods=[
+{name:"Veg Burger",cat:"Snacks",price:50,emoji:"🍔",desc:"Crispy patty with fresh veggies"},
+{name:"Masala Maggi",cat:"Snacks",price:35,emoji:"🍜",desc:"Hot and flavourful noodles"},
+{name:"Veg Sandwich",cat:"Snacks",price:40,emoji:"🥪",desc:"Toasted sandwich with vegetables"},
+{name:"Veg Thali",cat:"Meals",price:90,emoji:"🍛",desc:"A filling everyday meal"},
+{name:"Chole Rice",cat:"Meals",price:70,emoji:"🍲",desc:"Classic chole served with rice"},
+{name:"Cold Coffee",cat:"Drinks",price:45,emoji:"🥤",desc:"Chilled and refreshing"},
+{name:"Fresh Lime",cat:"Drinks",price:25,emoji:"🍋",desc:"Fresh sweet or salty lime drink"},
+{name:"Samosa",cat:"Snacks",price:15,emoji:"🥟",desc:"Crispy snack with potato filling"},
+{name:"Fruit Bowl",cat:"Meals",price:55,emoji:"🍓",desc:"Seasonal fruit selection"}
+];
+let cart={};let current="All";
+function render(){const grid=document.getElementById('foodGrid');grid.innerHTML='';foods.filter(f=>current==='All'||f.cat===current).forEach(f=>{const d=document.createElement('article');d.className='item';d.innerHTML=`<div class="food-img">${f.emoji}</div><div class="item-body"><h3>${f.name}</h3><p>${f.desc}</p><div class="item-bottom"><span class="price">₹${f.price}</span><button class="add" onclick="addItem('${f.name}')">+ Add</button></div></div>`;grid.appendChild(d)});}
+function filterMenu(cat,btn){current=cat;document.querySelectorAll('.filter').forEach(x=>x.classList.remove('active'));btn.classList.add('active');render()}
+function addItem(name){cart[name]=(cart[name]||0)+1;updateCart()}
+function updateCart(){let count=Object.values(cart).reduce((a,b)=>a+b,0),sum=0;document.getElementById('count').textContent=count;let box=document.getElementById('cartItems');box.innerHTML='';if(!count){box.innerHTML='<div class="empty">Your cart is empty.</div>'}Object.entries(cart).forEach(([name,qty])=>{let f=foods.find(x=>x.name===name);sum+=f.price*qty;let row=document.createElement('div');row.className='cart-line';row.innerHTML=`<span>${f.emoji} ${name} × ${qty}</span><strong>₹${f.price*qty}</strong>`;box.appendChild(row)});document.getElementById('total').textContent='₹'+sum}
+function toggleCart(){let p=document.getElementById('cartPanel');p.style.display=p.style.display==='block'?'none':'block'}
+function checkout(){if(!Object.keys(cart).length){alert('Please add an item to your cart first.');return}let summary=Object.entries(cart).map(([n,q])=>`${n} x ${q}`).join('\\n');alert('Demo order placed!\\n\\n'+summary+'\\n\\nPlease collect from the canteen counter.');cart={};updateCart();document.getElementById('cartPanel').style.display='none'}
+render();updateCart();
+</script>
+</body></html>
